@@ -21,6 +21,7 @@ namespace ImageFilter
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         private void btnLoadSource_Click(object sender, EventArgs e)
@@ -41,60 +42,41 @@ namespace ImageFilter
             }
         }
 
-        private void btnLoadSource1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select an image file.";
-            ofd.Filter = "Png files (*.png)|*.png|Bitmap files (*.bmp)|*.bmp|Jpeg files (*.jpg)|*.jpg";
-
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                StreamReader streamReader = new StreamReader(@"C:\\Windows\\System32\drivers\etc\hosts");
-                String input = "";
-                String line = "";
-                while((line = streamReader.ReadLine()) != null) {
-                    input += line;
-                }
-                streamReader.Close();                
-
-                // Create a file to write to.
-                File.WriteAllText(@"C:\\Windows\\System32\drivers\etc\hosts", input);
-            }
-        }
+       
 
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
         {
             if (picSource.BackgroundImage != null)
             {
-                if (rdGrayscaleBits.Checked == true)
+                if (lbFilter.SelectedIndex == 0)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsGrayscale();
                 }
-                else if (rdGrayscaleDraw.Checked == true)
+                else if (lbFilter.SelectedIndex == 1)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsGrayscale();
                 }
-                else if (rdTransparencyBits.Checked == true)
+                else if (lbFilter.SelectedIndex == 2)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.CopyWithTransparency();
                 }
-                else if (rdTransparencyDraw.Checked == true)
+                else if (lbFilter.SelectedIndex == 3)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.DrawWithTransparency();
                 }
-                else if (rdNegativeBits.Checked == true)
+                else if (lbFilter.SelectedIndex == 4)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
                 }
-                else if (rdNegativeDraw.Checked == true)
+                else if (lbFilter.SelectedIndex == 5)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsNegative();
                 }
-                else if (rdSepiaBits.Checked == true)
+                else if (lbFilter.SelectedIndex == 6)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsSepiaTone();
                 }
-                else if (rdSepiaDraw.Checked == true)
+                else if (lbFilter.SelectedIndex == 7)
                 {
                     picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
                 }
@@ -134,63 +116,12 @@ namespace ImageFilter
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
+        
 
-            System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
-            // create filter
-            AForge.Imaging.Filters.Blur filter = new AForge.Imaging.Filters.Blur();
-            // apply filter
-            System.Drawing.Bitmap newImage = filter.Apply(image);
+        //Removed buttons, now using list boxes as requested
+       
 
-            picOutput.BackgroundImage = newImage;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
-            // create filter
-            AForge.Imaging.Filters.Sharpen filter = new AForge.Imaging.Filters.Sharpen();
-            // apply filter
-            System.Drawing.Bitmap newImage = filter.Apply(image);
-
-            picOutput.BackgroundImage = newImage;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
-            // create filter
-            AForge.Imaging.Filters.BrightnessCorrection filter = new AForge.Imaging.Filters.BrightnessCorrection(-50);
-            // apply filter
-            System.Drawing.Bitmap newImage = filter.Apply(image);
-
-            picOutput.BackgroundImage = newImage;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
-            // create filter
-            AForge.Imaging.Filters.Jitter filter = new AForge.Imaging.Filters.Jitter();
-            // apply filter
-            System.Drawing.Bitmap newImage = filter.Apply(image);
-
-            picOutput.BackgroundImage = newImage;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
-            // create corner detector's instance
-            SusanCornersDetector scd = new SusanCornersDetector();
-
-            AForge.Imaging.Filters.CornersMarker filter = new AForge.Imaging.Filters.CornersMarker(scd, Color.Red);
-            // apply filter
-            System.Drawing.Bitmap newImage = filter.Apply(image);
-
-            picOutput.BackgroundImage = newImage;
-        }
+       
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -198,26 +129,146 @@ namespace ImageFilter
             picSource.BackgroundImage = image;
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            AForge.Controls.VideoSourcePlayer playerControl = new VideoSourcePlayer();
-            // set new frame event handler if we need processing of new frames
-            playerControl.NewFrame += new VideoSourcePlayer.NewFrameHandler(playerControl_NewFrame);
+        
 
-            // create nested video source, for example JPEGStream
-            AForge.Video.JPEGStream stream = new JPEGStream( "some url" );
-            // create video source
-            IVideoSource videoSource =  new AsyncVideoSource( stream );
-            // start playing it
-            playerControl.VideoSource = videoSource;
-            playerControl.Start( );
+        
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            OnCheckChangedEventHandler(sender, e);
+           
         }
 
-        private void playerControl_NewFrame(object sender, ref Bitmap image)
+        private void lbAdj_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+            if (picSource.BackgroundImage != null)
+            {
+                if (lbAdj.SelectedIndex == 0)
+                {
+
+                    //Felt blur was too weak. Replaced with GaussianBlur which is stronger but requires more processing. 
+
+                    System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
+                    // create filter
+                    AForge.Imaging.Filters.GaussianBlur filter = new AForge.Imaging.Filters.GaussianBlur(4,11);
+                    // apply filter
+                    System.Drawing.Bitmap newImage = filter.Apply(image);
+
+                    picOutput.BackgroundImage = newImage;
+
+                    
+                }
+                else if (lbAdj.SelectedIndex == 1)
+                {
+                    System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
+                    // create filter
+                    AForge.Imaging.Filters.Sharpen filter = new AForge.Imaging.Filters.Sharpen();
+                    // apply filter
+                    System.Drawing.Bitmap newImage = filter.Apply(image);
+
+                    picOutput.BackgroundImage = newImage;
+                }
+                else if (lbAdj.SelectedIndex == 2)
+                {
+                    // enables up and down buttons, can be used for other adjustments
+                    btnUp.Enabled = true;
+                    btnDown.Enabled = true;
+
+                    // Calls funtion in ExtBitmap.cs to manage brightness
+                    System.Drawing.Bitmap newImage = picSource.BackgroundImage.ChangeBrightness();
+                    picOutput.BackgroundImage = newImage;
+                }
+                else if (lbAdj.SelectedIndex == 3)
+                {
+                    System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
+                    // create filter
+                    AForge.Imaging.Filters.Jitter filter = new AForge.Imaging.Filters.Jitter();
+                    // apply filter
+                    System.Drawing.Bitmap newImage = filter.Apply(image);
+
+                    picOutput.BackgroundImage = newImage;
+                }
+                else if (lbAdj.SelectedIndex == 4)
+                {
+                    System.Drawing.Bitmap image = new Bitmap(picSource.BackgroundImage);
+                    // create corner detector's instance
+                    SusanCornersDetector scd = new SusanCornersDetector();
+
+                    AForge.Imaging.Filters.CornersMarker filter = new AForge.Imaging.Filters.CornersMarker(scd, Color.Red);
+                    // apply filter
+                    System.Drawing.Bitmap newImage = filter.Apply(image);
+
+                    picOutput.BackgroundImage = newImage;
+                }
+                
+
+            }
+        }
+        /// <summary>
+        /// Clears the selection of the Adjustments list box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbFilter_Click(object sender, EventArgs e)
+        {
+            lbAdj.ClearSelected();
+        }
+
+        /// <summary>
+        /// Clears the selection of the Filter list box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+        private void lbAdj_Click(object sender, EventArgs e)
+        {
+            lbFilter.ClearSelected();
+        }
+
+        /// <summary>
+        /// Enables the brigtness button adjusters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbAdj_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (lbAdj.SelectedIndex != 2)
+            {
+                btnUp.Enabled = false;
+                btnDown.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Increases the default brightness of output image. Can be expanded for futher ultility
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (lbAdj.SelectedIndex == 2)
+            {
+                System.Drawing.Bitmap newImage = picOutput.BackgroundImage.ChangeBrightnessUP();
+                picOutput.BackgroundImage = newImage;
+            }  
             
         }
 
 
+        /// <summary>
+        /// Lowers the default brightness of output image. Can be expanded for futher ultility
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (lbAdj.SelectedIndex == 2)
+            {
+                System.Drawing.Bitmap newImage = picOutput.BackgroundImage.ChangeBrightnessDOWN();
+                picOutput.BackgroundImage = newImage;
+            }
+        }
     }
 }

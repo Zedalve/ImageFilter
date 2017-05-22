@@ -14,6 +14,8 @@ namespace ImageFilter
 {
     public static class ExtBitmap
     {
+        //Initates a default brightness setting to use for the brigtness correction. 
+        public static int DefaultBright = -50;
         private static Bitmap GetArgbCopy(Image sourceImage)
         {
             Bitmap bmpNew = new Bitmap(sourceImage.Width, sourceImage.Height, PixelFormat.Format32bppArgb);
@@ -235,6 +237,51 @@ namespace ImageFilter
                                                 });
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
+        }
+
+        /// <summary>
+        /// Uses default brightness correction (-50)
+        /// </summary>
+        /// <param name="sourceImage"></param>
+        /// <returns></returns>
+        public static Bitmap ChangeBrightness(this Image sourceImage)
+        {
+            System.Drawing.Bitmap image = new Bitmap(sourceImage);
+            // create filter
+            AForge.Imaging.Filters.BrightnessCorrection filter = new AForge.Imaging.Filters.BrightnessCorrection(DefaultBright);
+            // apply filter
+            System.Drawing.Bitmap newImage = filter.Apply(image);
+            return newImage;
+        }
+        /// <summary>
+        /// Increases brightness default value by 10. Increment can be adjusted.
+        /// </summary>
+        /// <param name="sourceImage"></param>
+        /// <returns></returns>
+        public static Bitmap ChangeBrightnessUP(this Image sourceImage)
+        {
+            DefaultBright =+10; 
+            System.Drawing.Bitmap image = new Bitmap(sourceImage);
+            // create filter
+            AForge.Imaging.Filters.BrightnessCorrection filter = new AForge.Imaging.Filters.BrightnessCorrection(DefaultBright);
+            // apply filter
+            System.Drawing.Bitmap newImage = filter.Apply(image);
+            return newImage;
+        }
+        /// <summary>
+        /// Decreases brightness default value by 10. Increment can be adjusted.
+        /// </summary>
+        /// <param name="sourceImage"></param>
+        /// <returns></returns>
+        public static Bitmap ChangeBrightnessDOWN(this Image sourceImage)
+        {
+            DefaultBright = -10;
+            System.Drawing.Bitmap image = new Bitmap(sourceImage);
+            // create filter
+            AForge.Imaging.Filters.BrightnessCorrection filter = new AForge.Imaging.Filters.BrightnessCorrection(DefaultBright);
+            // apply filter
+            System.Drawing.Bitmap newImage = filter.Apply(image);
+            return newImage;
         }
     }
 }
