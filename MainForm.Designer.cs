@@ -8,7 +8,261 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
+        /// Clean up any resources being used.namespace ImageFilter
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
         /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.grbInput = new System.Windows.Forms.GroupBox();
+            this.picSource = new System.Windows.Forms.Panel();
+            this.grbOutput = new System.Windows.Forms.GroupBox();
+            this.picOutput = new System.Windows.Forms.Panel();
+            this.btnLoadSource = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.lbFilter = new System.Windows.Forms.ListBox();
+            this.lbAdj = new System.Windows.Forms.ListBox();
+            this.lblAdj = new System.Windows.Forms.Label();
+            this.gbAdj = new System.Windows.Forms.GroupBox();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.grbInput.SuspendLayout();
+            this.grbOutput.SuspendLayout();
+            this.gbAdj.SuspendLayout();
+            this.gbFilter.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // grbInput
+            // 
+            this.grbInput.Controls.Add(this.picSource);
+            this.grbInput.Location = new System.Drawing.Point(12, 51);
+            this.grbInput.Name = "grbInput";
+            this.grbInput.Size = new System.Drawing.Size(272, 280);
+            this.grbInput.TabIndex = 0;
+            this.grbInput.TabStop = false;
+            this.grbInput.Text = "Source";
+            // 
+            // picSource
+            // 
+            this.picSource.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picSource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picSource.Location = new System.Drawing.Point(11, 19);
+            this.picSource.Name = "picSource";
+            this.picSource.Size = new System.Drawing.Size(250, 250);
+            this.picSource.TabIndex = 0;
+            // 
+            // grbOutput
+            // 
+            this.grbOutput.Controls.Add(this.picOutput);
+            this.grbOutput.Location = new System.Drawing.Point(393, 51);
+            this.grbOutput.Name = "grbOutput";
+            this.grbOutput.Size = new System.Drawing.Size(272, 280);
+            this.grbOutput.TabIndex = 1;
+            this.grbOutput.TabStop = false;
+            this.grbOutput.Text = "Preview";
+            // 
+            // picOutput
+            // 
+            this.picOutput.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picOutput.Location = new System.Drawing.Point(11, 18);
+            this.picOutput.Name = "picOutput";
+            this.picOutput.Size = new System.Drawing.Size(250, 250);
+            this.picOutput.TabIndex = 0;
+            // 
+            // btnLoadSource
+            // 
+            this.btnLoadSource.Location = new System.Drawing.Point(23, 22);
+            this.btnLoadSource.Name = "btnLoadSource";
+            this.btnLoadSource.Size = new System.Drawing.Size(110, 23);
+            this.btnLoadSource.TabIndex = 2;
+            this.btnLoadSource.Text = "Load Source";
+            this.btnLoadSource.UseVisualStyleBackColor = true;
+            this.btnLoadSource.Click += new System.EventHandler(this.btnLoadSource_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(545, 337);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Save Output";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(282, 166);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(113, 27);
+            this.button7.TabIndex = 16;
+            this.button7.Text = "<<Keep Changes<<";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // lbFilter
+            // 
+            this.lbFilter.FormattingEnabled = true;
+            this.lbFilter.Items.AddRange(new object[] {
+            "Grayscale - Bits",
+            "Grayscale - Draw",
+            "Transparency - Bits",
+            "Transparency - Draw",
+            "Negative - Bits",
+            "Negative - Draw",
+            "Sepia Tone - Bits",
+            "Sepia Tone - Draw"});
+            this.lbFilter.Location = new System.Drawing.Point(6, 18);
+            this.lbFilter.Name = "lbFilter";
+            this.lbFilter.Size = new System.Drawing.Size(110, 108);
+            this.lbFilter.TabIndex = 18;
+            this.lbFilter.Click += new System.EventHandler(this.lbFilter_Click);
+            this.lbFilter.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // lbAdj
+            // 
+            this.lbAdj.FormattingEnabled = true;
+            this.lbAdj.Items.AddRange(new object[] {
+            "Blur",
+            "Sharpen",
+            "Brightness",
+            "Jitter",
+            "CornerMarker"});
+            this.lbAdj.Location = new System.Drawing.Point(6, 19);
+            this.lbAdj.Name = "lbAdj";
+            this.lbAdj.Size = new System.Drawing.Size(110, 69);
+            this.lbAdj.TabIndex = 19;
+            this.lbAdj.Click += new System.EventHandler(this.lbAdj_Click);
+            this.lbAdj.SelectedIndexChanged += new System.EventHandler(this.lbAdj_SelectedIndexChanged);
+            this.lbAdj.SelectedValueChanged += new System.EventHandler(this.lbAdj_SelectedValueChanged);
+            // 
+            // lblAdj
+            // 
+            this.lblAdj.AutoSize = true;
+            this.lblAdj.Location = new System.Drawing.Point(114, 93);
+            this.lblAdj.Name = "lblAdj";
+            this.lblAdj.Size = new System.Drawing.Size(0, 13);
+            this.lblAdj.TabIndex = 21;
+            // 
+            // gbAdj
+            // 
+            this.gbAdj.Controls.Add(this.lbAdj);
+            this.gbAdj.Controls.Add(this.lblAdj);
+            this.gbAdj.Location = new System.Drawing.Point(671, 225);
+            this.gbAdj.Name = "gbAdj";
+            this.gbAdj.Size = new System.Drawing.Size(131, 106);
+            this.gbAdj.TabIndex = 24;
+            this.gbAdj.TabStop = false;
+            this.gbAdj.Text = "Adjustments";
+            // 
+            // gbFilter
+            // 
+            this.gbFilter.Controls.Add(this.lbFilter);
+            this.gbFilter.Location = new System.Drawing.Point(671, 51);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(131, 142);
+            this.gbFilter.TabIndex = 25;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "Filter";
+            // 
+            // btnUp
+            // 
+            this.btnUp.Enabled = false;
+            this.btnUp.Location = new System.Drawing.Point(808, 261);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(28, 23);
+            this.btnUp.TabIndex = 26;
+            this.btnUp.Text = "↑";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Enabled = false;
+            this.btnDown.Location = new System.Drawing.Point(808, 290);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(28, 23);
+            this.btnDown.TabIndex = 27;
+            this.btnDown.Text = "↓";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(859, 382);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
+            this.Controls.Add(this.gbFilter);
+            this.Controls.Add(this.gbAdj);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadSource);
+            this.Controls.Add(this.grbOutput);
+            this.Controls.Add(this.grbInput);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Bitmap Filters";
+            this.grbInput.ResumeLayout(false);
+            this.grbOutput.ResumeLayout(false);
+            this.gbAdj.ResumeLayout(false);
+            this.gbAdj.PerformLayout();
+            this.gbFilter.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox grbInput;
+        private System.Windows.Forms.Panel picSource;
+        private System.Windows.Forms.GroupBox grbOutput;
+        private System.Windows.Forms.Panel picOutput;
+        private System.Windows.Forms.Button btnLoadSource;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ListBox lbFilter;
+        private System.Windows.Forms.ListBox lbAdj;
+        private System.Windows.Forms.Label lblAdj;
+        private System.Windows.Forms.GroupBox gbAdj;
+        private System.Windows.Forms.GroupBox gbFilter;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
+    }
+}
+
+
+        
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
